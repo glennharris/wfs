@@ -73,14 +73,12 @@ CREATE TABLE wfs.income_types (
 
 CREATE TABLE wfs.health_issues (
 	health_issue_id INT AUTO_INCREMENT PRIMARY KEY,
-	name_id INT,
 	description VARCHAR(255)
 );
 
 CREATE TABLE wfs.gender (
 	gender_id INT AUTO_INCREMENT PRIMARY KEY,
-	description VARCHAR(10),
-	PRIMARY KEY (GENDER_ID)
+	description VARCHAR(10)
 );
 
 CREATE TABLE wfs.marital_status (
