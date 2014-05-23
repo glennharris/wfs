@@ -10,8 +10,8 @@
 <div >
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         
-	    <label>First Name</label><input id="fname" name="fname" type="text" onChange="valField(this);" /><br />
-	    <label>Last Name</label><input id="lname" name="lname" type="text"onChange="valField(this);" /><br />
+	    <label>First Name</label><input id="fname" name="fname" type="text" onChange="valField(this, 'string');" /><br />
+	    <label>Last Name</label><input id="lname" name="lname" type="text" onChange="valField(this, 'string');" /><br />
 	    <div id="locationField">
 		    <label>Address</label>
 		    <input id="autocomplete" onFocus="geolocate()" type="text" /><br />
@@ -24,7 +24,7 @@
         <input class="field" name="postal_code" disabled="true" />
         <input class="field" name="country" disabled="true" />
 	    </div>
-	    <label>Email</label><input id="email" name="email" type="email" placeholder="E.g. name@company.com" /><br />
+	    <label>Email</label><input id="email" name="email" type="text" placeholder="E.g. name@company.com" onChange="valField(this, 'email');"/><br />
 	    <label>Phone</label><input id="phone" name="phone" type="tel" placeholder="Home, work or mobile"/></br>
 	    <label>Date of Birth</label><input id="dob" name="dob" type="date" /><br />
 	    <label>Marital Status</label>
@@ -39,23 +39,8 @@
 	</form>
 </div>
 </div>
-<?php
-
-function fCheck($string, $type, $length) {
-    $type = 'is_' . $type;
-    
-    if (!$type($string)) {
-        return FALSE;
-    } elseif (empty($string)) {
-        return FALSE;
-    } else if (strlen($string) > $length) {
-        return FALSE;
-    } else {
-        return TRUE;
-    }
-}
-    
-
+<?php  
+include ("wfsfunc.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 /*
     // Form validation
@@ -70,6 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Enter a last name!\n";
     }*/
+    
+    echo filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    echo var_dump(fCheck($_POST['email'], 'email', 255));
 }
 
 ?>

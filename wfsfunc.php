@@ -11,17 +11,24 @@
 // Server side validation functions
 // Checks form inputs for type and length
 function fCheck($string, $type, $length) {
-    $type = 'is_' . $type;
+    $isValid = true;
     
-    if (!$type($string)) {
-        return FALSE;
-    } elseif (empty($string)) {
-        return FALSE;
-    } else if (strlen($string) > $length) {
-        return FALSE;
+    if ($type == 'email') {
+        if (!filter_var($string, FILTER_VALIDATE_EMAIL)) { 
+            $isValid = false; 
+        }
     } else {
-        return TRUE;
+        $type = 'is_' . $type;
+        
+        if (!$type($string)) {
+            $isValid = false;
+        } elseif (empty($string)) {
+            $isValid = false;
+        } else {
+            $isValid = false;
+        }   
     }
-}
-
+    
+    return $isValid;
+}     
 ?>

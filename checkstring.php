@@ -1,10 +1,10 @@
 <?php
     include ("wfsfunc.php");
     $q = $_GET["q"];
-    $d = fCheck($q, 'string', 25);
-    if (!$d) {
-        echo "Please enter a value";
-        echo $d;
+    $s = $_GET["s"];
+
+    if (!fCheck($q, $s, 255)) {
+        echo "Fail";
     } else {
         echo $q;
     } 

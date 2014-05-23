@@ -22,7 +22,7 @@ function setStyle(str, type) {
     }
 }
 
-function valField(fid) {
+function valField(fid, stype) {
     setStyle(fid, 0);
     
     if (window.XMLHttpRequest) {
@@ -34,7 +34,7 @@ function valField(fid) {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             fid.innerHTML = xmlhttp.responseText;
-            if (xmlhttp.responseText == "Please enter a value") {
+            if (xmlhttp.responseText == "Fail") {
                 setStyle(fid, 2);
             } else {
                 setStyle(fid, 1);
@@ -42,6 +42,6 @@ function valField(fid) {
         }
     }
     
-    xmlhttp.open("GET", "checkstring.php?q="+fid.value, true);
+    xmlhttp.open("GET", "checkstring.php?q="+fid.value+"&s="+stype, true);
     xmlhttp.send();
 }
