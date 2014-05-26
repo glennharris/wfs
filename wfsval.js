@@ -42,6 +42,6 @@ function valField(fid, stype) {
         }
     }
     
-    xmlhttp.open("GET", "checkstring.php?q="+fid.value+"&s="+stype, true);
+    xmlhttp.open("GET", "checkfield.php?q="+fid.value+"&s="+stype, true);
     xmlhttp.send();
 }

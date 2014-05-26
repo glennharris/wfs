@@ -25,7 +25,7 @@
         <input class="field" name="country" disabled="true" />
 	    </div>
 	    <label>Email</label><input id="email" name="email" type="text" placeholder="E.g. name@company.com" onChange="valField(this, 'email');"/><br />
-	    <label>Phone</label><input id="phone" name="phone" type="tel" placeholder="Home, work or mobile"/></br>
+	    <label>Phone</label><input id="phone" name="phone" type="tel" placeholder="Home, work or mobile" onChange="valField(this, 'phone');" /></br>
 	    <label>Date of Birth</label><input id="dob" name="dob" type="date" /><br />
 	    <label>Marital Status</label>
 	    <select id="mstatus" name="mstatus">
@@ -42,22 +42,11 @@
 <?php  
 include ("wfsfunc.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-/*
-    // Form validation
-    if (isset($_POST["fname"]) && fCheck($_POST["fname"], 'string', 25) != FALSE) {
-        $fname = $_POST["fname"];  
-    } else {
-        echo "Enter a first name!\n";
-    }
-    
-    if (isset($_POST["lname"]) && fCheck($_POST["lname"], 'string', 25) != FALSE) {
-        $fname = $_POST["lname"];  
-    } else {
-        echo "Enter a last name!\n";
-    }*/
-    
-    echo filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    echo var_dump(fCheck($_POST['email'], 'email', 255));
+   
+    echo var_dump(is_string($_POST['fname']));
+    echo var_dump(fCheck($_POST['phone'], 'string', 255));
+    echo $_POST['phone'];
+    //echo 
 }
 
 ?>

@@ -17,16 +17,18 @@ function fCheck($string, $type, $length) {
         if (!filter_var($string, FILTER_VALIDATE_EMAIL)) { 
             $isValid = false; 
         }
-    } else {
+    } else if ($type == 'string') {
         $type = 'is_' . $type;
         
         if (!$type($string)) {
             $isValid = false;
         } elseif (empty($string)) {
             $isValid = false;
-        } else {
-            $isValid = false;
         }   
+    } else if ($type == 'phone') {
+        if (!preg_match('/[0-9+-]/', $string)) {
+            $isValid = false;
+        }
     }
     
     return $isValid;
