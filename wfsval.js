@@ -45,3 +45,19 @@ function valField(fid, stype) {
     xmlhttp.open("GET", "checkfield.php?q="+fid.value+"&s="+stype, true);
     xmlhttp.send();
 }
+
+var counter = 1;
+var limit = 5;
+
+function addField(divName) {
+    if (counter == limit) {
+        alert("Input limit reached");
+    } 
+    else {
+        var newdiv = document.createElement('div');   
+        newdiv.innerHTML =  "<input type='text' name='myInputs[]'>";
+        document.getElementById(divName).appendChild(newdiv);
+        counter++;
+    }
+}
+    

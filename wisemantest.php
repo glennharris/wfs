@@ -35,6 +35,22 @@
 		    <option value="2">Divorced</option>
 		    <option value="3">Other</option>
 	    </select><br />
+	    <label>Gender</label><input type="radio" id="gender" name="gender" value="1" / >Male
+	        <input type="radio" id="gender" name="gender" value="2" / >Female<br />
+	    <label style="clear:both;">Assets</label><select id="astype" name="astype">
+	        <option value="" selected disabled style="display:none">Select from the list</option>
+	        <option value="1">Cash</option>
+	        <option value="2">Home</option>
+	        <option value="3">Shares</option>
+	        <option value="4">Term Deposit</option>
+	        <option value="5">Managed Fund</option>
+	        <option value="6">Superannuation Fund</option>
+	        <option value="7">Pension</option>
+	    </select>
+	    <div id="assets">
+	    <input type="text" id="myInputs[]" name="myInputs[]" />
+	    <input type="button" value="Add another" onClick="addField('assets');">
+	    </div>
 	    <input type="submit" />
 	</form>
 </div>

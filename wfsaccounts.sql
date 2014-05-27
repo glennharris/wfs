@@ -1,1 +1,1 @@
-CREATE USER 'wfsadmin@localhost' IDENTIFIED BY 'africa1' 
+CREATE USER 'wfsadmin' IDENTIFIED BY 'africa1' 
