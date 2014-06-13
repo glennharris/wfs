@@ -60,4 +60,21 @@ function addField(divName) {
         counter++;
     }
 }
+
+function toggleField(divId, tName) {
+    var i;
+    var radios;
+    radios = document.getElementById("cemp").getElementsByTagName("input");
+    
+    
+    for (i = 0; i < radios.length; i++) {
+        if (radios[i].value == '1' && radios[i].checked == true) {
+            document.getElementById(tName).style = "display: block";
+        } 
+        else if (radios[i].value == '0' && radios[i].checked == true) {
+            document.getElementById(tName).style = "display: none";
+        }
+            
+    }
+}
     

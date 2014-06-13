@@ -1,19 +1,23 @@
 input, select {
     border: 1px solid #000;
     padding: 2px;
-    margin: 10px 5px 5px 10px;
-    width: 25%;
+    margin: 5px 5px 5px 10px;
+    width: 50%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
     border-radius: 5px;
+    display: inline-block;
+    font-family: Georgia, serif;
+    
 }
 
 label {
     width: 25%;
-    float: left;
     padding: 2px;
-    margin: 10px 5px 5px 10px;
+    /*margin: 15px 5px 10px 10px;*/
+    display: inline-block;
+    line-height: 10pt;
 }
 
 .error {
@@ -29,9 +33,18 @@ label {
     width: 30%;
 }
 
-.flabel {
+    
+
+#jt {
+    width: 50%;
     float: left;
-    width: 22%;
+    padding: 2px;
+    margin: 10px 5px 5px 10px;
+}
+
+#autocomplete {
+    padding: 2px;
+    margin-left: 5px;
 }
 
 

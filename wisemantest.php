@@ -1,7 +1,9 @@
 <?php
-//include('wfshead.php');			
+include('wfshead.php');	
+include ("db.php"); 
+include ("wfsfunc.php");		
 ?>
-<!-- Move this into the header file -->
+<!-- Move this into the header file after test-->
 <script src="wfsval.js"></script>
 <link rel="stylesheet" media="screen,print" href="wfsform.css" />
 <!------------------------------------>
@@ -9,7 +11,7 @@
 <p></p>
 <div >
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-        
+    <div id="cdetails">  
 	    <label>First Name</label><input id="fname" name="fname" type="text" onChange="valField(this, 'string');" /><br />
 	    <label>Last Name</label><input id="lname" name="lname" type="text" onChange="valField(this, 'string');" /><br />
 	    <div id="locationField">
@@ -27,36 +29,45 @@
 	    <label>Email</label><input id="email" name="email" type="text" placeholder="E.g. name@company.com" onChange="valField(this, 'email');"/><br />
 	    <label>Phone</label><input id="phone" name="phone" type="tel" placeholder="Home, work or mobile" onChange="valField(this, 'phone');" /></br>
 	    <label>Date of Birth</label><input id="dob" name="dob" type="date" /><br />
-	    <label>Marital Status</label>
+	    <label>Gender</label><input type="radio" id="gender" name="gender" value="1" / >Male
+	        <input type="radio" id="gender" name="gender" value="2" / >Female<br />
+	    <label style="clear:both;">Marital Status</label>
 	    <select id="mstatus" name="mstatus">
 		    <option value="" selected disabled style="display:none">Select from the list</option>
 		    <option value="0">Single</option>
 		    <option value="1">Married</option>
 		    <option value="2">Divorced</option>
 		    <option value="3">Other</option>
-	    </select><br />
-	    <label>Gender</label><input type="radio" id="gender" name="gender" value="1" / >Male
-	        <input type="radio" id="gender" name="gender" value="2" / >Female<br />
+	    </select>
+	</div>
+	<div id="cemp" style="clear:both;">
+	    <label style="clear:both;">Are you employed?</label>
+	    <input type="radio" id="curremp" name="curremp" value="1" onChange="toggleField(this, 'jt');" />Yes
+	    <input type="radio" id="curremp" name="curremp" value="0" onChange="toggleField(this, 'jt');" />No<br />
+	    <div id="jt" style="display:none; float:left;"><label>Current Job</label><input id="jobtitle" name="jobtitle" type=text /></div>
+	</div>
+	<div id="cass">
 	    <label style="clear:both;">Assets</label><select id="astype" name="astype">
 	        <option value="" selected disabled style="display:none">Select from the list</option>
-	        <option value="1">Cash</option>
-	        <option value="2">Home</option>
-	        <option value="3">Shares</option>
-	        <option value="4">Term Deposit</option>
-	        <option value="5">Managed Fund</option>
-	        <option value="6">Superannuation Fund</option>
-	        <option value="7">Pension</option>
+	        <?php 
+	            $query = "SELECT * FROM ASSET_TYPES";
+                $result = mysqli_query($link, $query);
+                while ($row = mysqli_fetch_array($result)) {
+	                 echo "<option value=" . $row['ASSET_TYPE_ID'] . ">" . $row['DESCRIPTION'] . "</option>";
+	            }
+	        ?>
 	    </select>
 	    <div id="assets">
 	    <input type="text" id="myInputs[]" name="myInputs[]" />
 	    <input type="button" value="Add another" onClick="addField('assets');">
 	    </div>
+	</div>
 	    <input type="submit" />
 	</form>
 </div>
 </div>
-<?php  
-include ("wfsfunc.php");
+<?php 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     echo var_dump(is_string($_POST['fname']));
@@ -67,5 +78,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 <?php 
-//include('wfsfoot.php');
+include('wfsfoot.php');
 ?>
