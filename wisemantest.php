@@ -9,8 +9,9 @@ include ("wfsfunc.php");
 <!------------------------------------>
 <div id="page_content" class="editable"><h1></h1>
 <p></p>
+
 <div >
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+    <form action="procform.php" method="POST">
     <div id="cdetails">  
 	    <label>First Name</label><input id="fname" name="fname" type="text" onChange="valField(this, 'string');" /><br />
 	    <label>Last Name</label><input id="lname" name="lname" type="text" onChange="valField(this, 'string');" /><br />
@@ -18,13 +19,14 @@ include ("wfsfunc.php");
 		    <label>Address</label>
 		    <input id="autocomplete" onFocus="geolocate()" type="text" /><br />
         </div>
-	    <div style="display:none;">
-	    <input class="field" name="street_number" disabled="true" />
-        <input class="field" name="route" disabled="true" />
-        <input class="field" name="locality" disabled="true" />
-	    <input class="field" name="administrative_area_level_1" disabled="true" />
-        <input class="field" name="postal_code" disabled="true" />
-        <input class="field" name="country" disabled="true" />
+	    <div style="display:block;">
+	    <input class="field" name="subpremise" id="subpremise"/>
+	    <input class="field" name="street_number" id="street_number" />
+        <input class="field" name="route" id="route" />
+        <input class="field" name="locality" id="locality" />
+	    <input class="field" name="administrative_area_level_1" id="administrative_area_level_1" />
+        <input class="field" name="postal_code" id="postal_code" />
+        <input class="field" name="country" id="country" />
 	    </div>
 	    <label>Email</label><input id="email" name="email" type="text" placeholder="E.g. name@company.com" onChange="valField(this, 'email');"/><br />
 	    <label>Phone</label><input id="phone" name="phone" type="tel" placeholder="Home, work or mobile" onChange="valField(this, 'phone');" /></br>
@@ -33,11 +35,14 @@ include ("wfsfunc.php");
 	        <input type="radio" id="gender" name="gender" value="2" / >Female<br />
 	    <label style="clear:both;">Marital Status</label>
 	    <select id="mstatus" name="mstatus">
-		    <option value="" selected disabled style="display:none">Select from the list</option>
-		    <option value="0">Single</option>
-		    <option value="1">Married</option>
-		    <option value="2">Divorced</option>
-		    <option value="3">Other</option>
+	        <option value="" selected disabled style="display:none">Select from the list</option>
+		    <?php 
+	            $query = "SELECT * FROM MARITAL_STATUS";
+                $result = $mysqli->query($query);
+                while ($row = $result->fetch_array()) {
+	                 echo "<option value=" . $row['MARITAL_STATUS_ID'] . ">" . $row['DESCRIPTION'] . "</option>";
+	            }
+	        ?>
 	    </select>
 	</div>
 	<div id="cemp" style="clear:both;">
@@ -51,8 +56,8 @@ include ("wfsfunc.php");
 	        <option value="" selected disabled style="display:none">Select from the list</option>
 	        <?php 
 	            $query = "SELECT * FROM ASSET_TYPES";
-                $result = mysqli_query($link, $query);
-                while ($row = mysqli_fetch_array($result)) {
+                $result = $mysqli->query($query);
+                while ($row = $result->fetch_array()) {
 	                 echo "<option value=" . $row['ASSET_TYPE_ID'] . ">" . $row['DESCRIPTION'] . "</option>";
 	            }
 	        ?>
@@ -62,21 +67,11 @@ include ("wfsfunc.php");
 	    <input type="button" value="Add another" onClick="addField('assets');">
 	    </div>
 	</div>
-	    <input type="submit" />
+	    <input type="submit" value="submit" />
 	</form>
 </div>
 </div>
-<?php 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   
-    echo var_dump(is_string($_POST['fname']));
-    echo var_dump(fCheck($_POST['phone'], 'string', 255));
-    echo $_POST['phone'];
-    //echo 
-}
-
-?>
 <?php 
-include('wfsfoot.php');
+//include('wfsfoot.php');
 ?>
