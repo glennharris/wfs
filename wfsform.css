@@ -1,23 +1,44 @@
-input, select {
+input {
     border: 1px solid #000;
-    padding: 2px;
-    margin: 5px 5px 5px 10px;
-    width: 50%;
+    padding: 5px;
+    margin: 0px 5px 5px 10px;
+    width: 45%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
     border-radius: 5px;
     display: inline-block;
     font-family: Georgia, serif;
-    
 }
 
-label {
-    width: 25%;
-    padding: 2px;
-    /*margin: 15px 5px 10px 10px;*/
+input[type="radio"] {
+    float: left;
+    clear: none;
+    padding: 5px;
+    margin: 8px 5px 10px 10px;
+
+}
+
+select {
+    border: 1px solid #000;
+    padding: 5px;
+    margin: 0px 5px 5px 10px;
+    width: 45%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right;
+    border-radius: 5px;
     display: inline-block;
-    line-height: 10pt;
+    font-family: Georgia, serif;    
+}
+label {
+    width: 45%;
+    padding: 5px;
+    display: inline-block;
+    float: left;
+    clear: left;
+    text-align: right;
+    height: 18px;
 }
 
 .error {
@@ -33,18 +54,14 @@ label {
     width: 30%;
 }
 
-    
-
-#jt {
-    width: 50%;
+.rlabel {
     float: left;
-    padding: 2px;
-    margin: 10px 5px 5px 10px;
-}
-
-#autocomplete {
-    padding: 2px;
-    margin-left: 5px;
+    clear: none;
+    padding: 5px;
+    margin: 0px 5px 5px 5px; 
 }
 
 
+div {
+    clear: both;
+}

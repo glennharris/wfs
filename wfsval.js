@@ -55,7 +55,7 @@ function addField(divName) {
     } 
     else {
         var newdiv = document.createElement('div');   
-        newdiv.innerHTML =  "<input type='text' name='myInputs[]'>";
+        newdiv.innerHTML =  "<input type='text' name='aInputs[]'>";
         document.getElementById(divName).appendChild(newdiv);
         counter++;
     }

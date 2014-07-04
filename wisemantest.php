@@ -51,6 +51,14 @@ include ("wfsfunc.php");
 	    <input type="radio" id="curremp" name="curremp" value="0" onChange="toggleField(this, 'jt');" />No<br />
 	    <div id="jt" style="display:none; float:left;"><label>Current Job</label><input id="jobtitle" name="jobtitle" type=text /></div>
 	</div>
+	<div id="willpow">
+	    <label style="clear:both;">Do you have a will?</label>
+	    <input type="radio" id="curremp" name="will" value="1" />Yes
+	    <input type="radio" id="curremp" name="will" value="0" />No<br />
+	    <label style="clear:both;">Do you have a power of attorney?</label>
+	    <input type="radio" id="curremp" name="poa" value="1" />Yes
+	    <input type="radio" id="curremp" name="poa" value="0" />No<br />
+	</div>
 	<div id="cass">
 	    <label style="clear:both;">Assets</label><select id="astype" name="astype">
 	        <option value="" selected disabled style="display:none">Select from the list</option>

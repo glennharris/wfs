@@ -19,7 +19,7 @@ include ("wfsfunc.php");
     $email = $mysqli->real_escape_string($_POST["email"]);
     $phone = $mysqli->real_escape_string($_POST["phone"]);
     
-    $query = "INSERT INTO WFS_CONTACTS (UNIT_NUMBER, STREET_NUMBER, STREET_NAME, SUBURB, POSTAL_CODE, STATE_ID, EMAIL, PHONE) VALUES ('$unum', '$snum', '$sname', '$suburb', '$pcode', '$state_id', '$email', '$phone');";
+    $query = "INSERT INTO CONTACTS (UNIT_NUMBER, STREET_NUMBER, STREET_NAME, SUBURB, POSTAL_CODE, STATE_ID, EMAIL, PHONE) VALUES ('$unum', '$snum', '$sname', '$suburb', '$pcode', '$state_id', '$email', '$phone');";
     if (!$mysqli->query($query)) {
         printf("Error message: %s\n", $mysqli->error);
     }
@@ -33,15 +33,25 @@ include ("wfsfunc.php");
     $gender = $mysqli->real_escape_string($_POST["gender"]);
     $mstatus = $mysqli->real_escape_string($_POST["mstatus"]);
     $curremp = $mysqli->real_escape_string($_POST["curremp"]);
+    $jobtitle = $mysqli->real_escape_string($_POST["jobtitle"]);
     
-    echo $fname;
-    
-   $query = "INSERT INTO NAMES (FIRST_NAME, LAST_NAME, DATE_OF_BIRTH, GENDER, MARITAL_STATUS, WORK_STATUS, CONTACT_ID) VALUES ('$fname', '$lname', '$dob', '$gender', '$mstatus', '$curremp', '$contact_id');";
+    $query = "INSERT INTO NAMES (FIRST_NAME, LAST_NAME, DATE_OF_BIRTH, GENDER, MARITAL_STATUS, WORK_STATUS, JOB_TITLE, CONTACT_ID) VALUES ('$fname', '$lname', '$dob', '$gender', '$mstatus', '$curremp', '$jobtitle', '$contact_id');";
 
-    $mysqli->query($query);
-    printf("Last inserted id: %d\n", $mysqli->insert_id);
+    if (!$mysqli->query($query)) {
+        printf("Error message: %s\n", $mysqli->error);
+    }
     
-    //$query = "SELECT LAST_INSERT_ID();";*/
+    $name_id = $mysqli->insert_id;
+    
+    // Health Issues
+    
+    
+    // Insert assets
+    
+    // Insert liabilities
+    
+    
+
 
 
 ?>
