@@ -1,0 +1,14 @@
+<?php
+    include ("wfsfunc.php");
+    $q = $_GET["q"];
+    $s = $_GET["s"];
+    //echo $s;
+    // Check type
+    $d = fCheck($q, $s, 255);
+    //echo $d;
+    if (!$d) {
+        echo "Fail";
+    } else {
+        echo $q;
+    } 
+?>

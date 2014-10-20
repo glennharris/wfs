@@ -12,7 +12,6 @@ include ("wfsfunc.php");
 
 <div >
     <form action="procform.php" method="POST">
-    <div class="mainsec">Personal Details</div>
     <div id="cdetails">  
 	    <label>First Name</label><input id="fname" name="fname" type="text" onChange="valField(this, 'string');" /><br />
 	    <label>Last Name</label><input id="lname" name="lname" type="text" onChange="valField(this, 'string');" /><br />
@@ -20,7 +19,7 @@ include ("wfsfunc.php");
 		    <label>Address</label>
 		    <input id="autocomplete" onFocus="geolocate()" type="text" /><br />
         </div>
-	    <div style="display:none;">
+	    <div style="display:block;">
 	    <input class="field" name="subpremise" id="subpremise"/>
 	    <input class="field" name="street_number" id="street_number" />
         <input class="field" name="route" id="route" />
@@ -31,9 +30,9 @@ include ("wfsfunc.php");
 	    </div>
 	    <label>Email</label><input id="email" name="email" type="text" placeholder="E.g. name@company.com" onChange="valField(this, 'email');"/><br />
 	    <label>Phone</label><input id="phone" name="phone" type="tel" placeholder="Home, work or mobile" onChange="valField(this, 'phone');" /></br>
-	    <label>Date of Birth</label><input type="date" id="dob" name="dob" placeholder="DD/MM/YYYY" /><br />
-	    <label>Gender</label><input type="radio" id="gender" name="gender" value="1" / ><div class="rlabel">Male</div>
-	        <input type="radio" id="gender" name="gender" value="2" / ><div class="rlabel">Female</div>
+	    <label>Date of Birth</label><input id="dob" name="dob" type="date" /><br />
+	    <label>Gender</label><input type="radio" id="gender" name="gender" value="1" / >Male
+	        <input type="radio" id="gender" name="gender" value="2" / >Female<br />
 	    <label style="clear:both;">Marital Status</label>
 	    <select id="mstatus" name="mstatus">
 	        <option value="" selected disabled style="display:none">Select from the list</option>
@@ -46,24 +45,21 @@ include ("wfsfunc.php");
 	        ?>
 	    </select>
 	</div>
-	<div id="cemp">
-	    <label>Are you employed?</label>
-	    <input type="radio" id="curremp" name="curremp" value="1" onChange="toggleField(this, 'jt');" /><div class="rlabel">Yes</div>
-	    <input type="radio" id="curremp" name="curremp" value="0" onChange="toggleField(this, 'jt');" /><div class="rlabel">No</div>
-	    <div id="jt" style="display:none;"><label>Current Job</label><input id="jobtitle" name="jobtitle" type=text /></div>
+	<div id="cemp" style="clear:both;">
+	    <label style="clear:both;">Are you employed?</label>
+	    <input type="radio" id="curremp" name="curremp" value="1" onChange="toggleField(this, 'jt');" />Yes
+	    <input type="radio" id="curremp" name="curremp" value="0" onChange="toggleField(this, 'jt');" />No<br />
+	    <div id="jt" style="display:none; float:left;"><label>Current Job</label><input id="jobtitle" name="jobtitle" type=text /></div>
 	</div>
 	<div id="willpow">
-	    <label>Do you have a will?</label>
-	    <input type="radio" id="curremp" name="will" value="1" /><div class="rlabel">Yes</div>
-	    <input type="radio" id="curremp" name="will" value="0" /><div class="rlabel">No</div>
-	    <label>Do you have a power of attorney?</label>
-	    <input type="radio" id="curremp" name="poa" value="1" /><div class="rlabel">Yes</div>
-	    <input type="radio" id="curremp" name="poa" value="0" /><div class="rlabel">No</div>
-	</div>
-	<div class="mainsec">Assets</div>
-	<div id="assets">
-	    <label class="aslabel">Asset type</label><label class="aslabel">Value</label>
-	    <select id="ast0" name="ast0">
+	    <label style="clear:both;">Do you have a will?</label>
+	    <input type="radio" id="curremp" name="will" value="1" />Yes
+	    <input type="radio" id="curremp" name="will" value="0" />No<br />
+	    <label style="clear:both;">Do you have a power of attorney?</label>
+	    <input type="radio" id="curremp" name="poa" value="1" />Yes
+	    <input type="radio" id="curremp" name="poa" value="0" />No<br />
+	<div id="cass">
+	    <label style="clear:both;">Assets</label><select id="astype" name="astype">
 	        <option value="" selected disabled style="display:none">Select from the list</option>
 	        <?php 
 	            $query = "SELECT * FROM ASSET_TYPES";
@@ -73,10 +69,11 @@ include ("wfsfunc.php");
 	            }
 	        ?>
 	    </select>
-	    
-	    <input type="text" id="asv0" name="asv0" />
-
-	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add newl" onClick="addField('assets');"></div>
+	    <div id="assets">
+	    <input type="text" id="myInputs[]" name="myInputs[]" />
+	    <input type="button" value="Add another" onClick="addField('assets');">
+	    </div>
+	</div>
 	    <input type="submit" value="submit" />
 	</form>
 </div>

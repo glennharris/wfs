@@ -63,7 +63,7 @@ include ("wfsfunc.php");
 	<div class="mainsec">Assets</div>
 	<div id="assets">
 	    <label class="aslabel">Asset type</label><label class="aslabel">Value</label>
-	    <select id="ast0" name="ast0">
+	    <select id="astype" name="astype">
 	        <option value="" selected disabled style="display:none">Select from the list</option>
 	        <?php 
 	            $query = "SELECT * FROM ASSET_TYPES";
@@ -74,7 +74,7 @@ include ("wfsfunc.php");
 	        ?>
 	    </select>
 	    
-	    <input type="text" id="asv0" name="asv0" />
+	    <input type="text" id="as0" name="as0" />
 
 	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add newl" onClick="addField('assets');"></div>
 	    <input type="submit" value="submit" />

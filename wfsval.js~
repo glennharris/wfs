@@ -55,7 +55,7 @@ function addField(divName) {
     } 
     else {
         var newdiv = document.createElement('div');   
-        newdiv.innerHTML =  "<select id='ast" + counter + "' name='ast" + counter + "'><option value='' selected disabled style='display:none'>Select from the list</option><?php $query = 'SELECT * FROM ASSET_TYPES'; $result = $mysqli->query($query); while ($row = $result->fetch_array()) { echo '<option value=' . $row['ASSET_TYPE_ID'] . '>' . $row['DESCRIPTION'] . '</option>'; } ?> </select> <input type='text' id='asv" + counter + "' name='asv" + counter + "' />";
+        newdiv.innerHTML =  "<select id='ast" + counter + " name='ast" + counter + "><option value='' selected disabled style='display:none'>Select from the list</option><?php $query = 'SELECT * FROM ASSET_TYPES'; $result = $mysqli->query($query); while ($row = $result->fetch_array()) { echo '<option value=' . $row['ASSET_TYPE_ID'] . '>' . $row['DESCRIPTION'] . '</option>'; } ?> </select> <input type='text' id='asv" + counter + " name='asv" + counter + " />";
         document.getElementById(divName).appendChild(newdiv);
         counter++;
     }
