@@ -60,6 +60,23 @@ include ("wfsfunc.php");
 	    <input type="radio" id="curremp" name="poa" value="1" /><div class="rlabel">Yes</div>
 	    <input type="radio" id="curremp" name="poa" value="0" /><div class="rlabel">No</div>
 	</div>
+	<div class="mainsec">Health Issues</div>
+	<div id="health">
+	    <label class="aslabel">Health Issue type</label><label class="aslabel">Value</label>
+	    <select id="hit0" name="hit0">
+	        <option value="" selected disabled style="display:none">Select from the list</option>
+	        <?php 
+	            $query = "SELECT * FROM HEALTH_ISSUE_TYPES";
+                $result = $mysqli->query($query);
+                while ($row = $result->fetch_array()) {
+	                 echo "<option value=" . $row['HEALTH_ISSUE_TYPE_ID'] . ">" . $row['DESCRIPTION'] . "</option>";
+	            }
+	        ?>
+	    </select>
+	    
+	    <input type="text" id="hiv0" name="hiv0" />
+
+	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new" onClick="addField('health');"></div>
 	<div class="mainsec">Assets</div>
 	<div id="assets">
 	    <label class="aslabel">Asset type</label><label class="aslabel">Value</label>
@@ -76,7 +93,24 @@ include ("wfsfunc.php");
 	    
 	    <input type="text" id="asv0" name="asv0" />
 
-	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add newl" onClick="addField('assets');"></div>
+	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new" onClick="addField('assets');"></div>
+	<div class="mainsec">Liabilities</div>
+	<div id="liab">
+	    <label class="aslabel">Liability type</label><label class="aslabel">Value</label>
+	    <select id="lit0" name="lit0">
+	        <option value="" selected disabled style="display:none">Select from the list</option>
+	        <?php 
+	            $query = "SELECT * FROM LIABILITY_TYPES";
+                $result = $mysqli->query($query);
+                while ($row = $result->fetch_array()) {
+	                 echo "<option value=" . $row['LIABILITY_TYPE_ID'] . ">" . $row['DESCRIPTION'] . "</option>";
+	            }
+	        ?>
+	    </select>
+	    
+	    <input type="text" id="liv0" name="liv0" />
+
+	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new" onClick="addField('liabilities');"></div>
 	    <input type="submit" value="submit" />
 	</form>
 </div>
