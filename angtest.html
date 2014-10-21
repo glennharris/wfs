@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" media="screen,print" href="wfsform.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="address.js"></script>
+</head>
+
+<body onload="initialize()" ng-app="wfsApp">
+
+<div ng-controller="wfsController">
+    <form>
+        <label>First Name</label><input type="text" name="firstName" ng-class="wfsForm.getFormFieldCssClass(wfsFormNg.name)" ng-model="wfsForm.firstName" required><br/>
+
+        <label>Last Name</label><input type="text" name="lastName"  ng-model="wfsForm.lastName" required><br/>
+        <div id="locationField">
+		    <label>Address</label>
+		    <input id="autocomplete" onFocus="geolocate()" type="text" required /><br />
+        </div>
+	    <div style="display:none;">
+	        <input class="field" name="subpremise" id="subpremise"/>
+	        <input class="field" name="street_number" id="street_number" />
+            <input class="field" name="route" id="route" />
+            <input class="field" name="locality" id="locality" />
+	        <input class="field" name="administrative_area_level_1" id="administrative_area_level_1" />
+            <input class="field" name="postal_code" id="postal_code" />
+            <input class="field" name="country" id="country" />
+	    </div>
+	    <label>Email</label><input id="email" name="email" type="email" placeholder="E.g. name@company.com" ng-model="wfsForm.email" required><br />
+	    <label>Phone</label><input id="phone" name="phone" type="tel" placeholder="Home, work or mobile" ng-model="wfsForm.phone" required /></br>
+	    <label>Date of Birth</label><input type="date" id="dob" name="dob" placeholder="DD/MM/YYYY" ng-model="wfsForm.dob" required /><br />
+	    <label>Gender</label>
+	        <input type="radio" id="gender" name="gender" ng-model="wfsForm.gender" value="1" required />
+	            <div class="rlabel">Male</div>
+	        <input type="radio" id="gender" name="gender" ng-model="wfsForm.gender" value="2" required />
+	            <div class="rlabel">Female</div>
+	    <label style="clear:both;">Marital Status</label>
+	        <select id="mstatus" name="mstatus" ng-model="wfsForm.mstatus" ng-options="obj.id as obj.name for obj in wfsForm.options"  required><option value="" selected disabled style="display:none">Select from the list</option>
+	            
+	        </select>
+
+	<div id="cemp">
+	    <label>Are you employed?</label>
+	    <input type="radio" id="curremp" name="curremp" ng-model="wfsForm.employed" value="1" required /><div class="rlabel">Yes</div>
+	    <input type="radio" id="curremp" name="curremp" ng-model="wfsForm.employed" value="0" required /><div class="rlabel">No</div>
+	    <label>Job Title</label><input type="text" ng-model="wfsForm.jobtitle" ng-disabled="wfsForm.employed == '0'" ng-required="wfsForm.employed == '1'" id="jobtitle" name="jobtitle" />
+
+	</div>
+	<div id="willpow">
+	    <label>Do you have a will?</label>
+	    <input type="radio" id="will" name="will" ng-model="wfsForm.will" value="1" required /><div class="rlabel">Yes</div>
+	    <input type="radio" id="will" name="will" ng-model="wfsForm.will" value="0" required /><div class="rlabel">No</div>
+	    <label>Do you have a power of attorney?</label>
+	    <input type="radio" id="poa" name="poa" ng-model="wfsForm.poa" value="1" required /><div class="rlabel">Yes</div>
+	    <input type="radio" id="poa" name="poa" ng-model="wfsForm.poa" value="0" required /><div class="rlabel">No</div>
+	</div>
+	<div class="mainsec">Health Issues</div>
+	<div id="health">
+	    <label class="aslabel">Health Issue type</label><label class="aslabel">Value</label>
+	    <select id="hit0" name="hit0">
+	        
+	        <option value="" selected disabled style="display:none">Select from the list</option>
+	            <option value="1">Never Married</option>
+	            <option value="2">Married</option>
+	            <option value="3">Separated</option>
+	            <option value="4">Divorced</option>
+	            <option value="5">Widowed</option>
+	    </select>
+	    
+	    <input type="text" id="hiv0" name="hiv0" />
+
+	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new"></div>
+	<div class="mainsec">Assets</div>
+	<div id="assets">
+	    <label class="aslabel">Asset type</label><label class="aslabel">Value</label>
+	    <select id="ast0" name="ast0">
+	        <option value="" selected disabled style="display:none">Select from the list</option>
+	    </select>
+	    
+	    <input type="text" id="asv0" name="asv0" />
+
+	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new" onClick="addField('assets');"></div>
+	<div class="mainsec">Liabilities</div>
+	<div id="liab">
+	    <label class="aslabel">Liability type</label><label class="aslabel">Value</label>
+	    <select id="lit0" name="lit0">
+	        <option value="" selected disabled style="display:none">Select from the list</option>
+	    </select>
+	    
+	    <input type="text" id="liv0" name="liv0" />
+
+	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new" onClick="addField('liabilities');"></div>
+    </form>
+
+    <div>
+        {{wfsForm.firstName}} {{wfsForm.lastName}}
+    </div>
+</div>
+
+<script>
+    angular.module("wfsApp", [])
+            .controller("wfsController", function($scope, $http) {
+                $scope.wfsForm = {};
+                $scope.wfsForm.getFormFieldCssClass = function(ngModelController) {
+                    //console.log("getting css class: " + ngModelController.$valid) ;
+                    if(ngModelController.$pristine) return "";
+                    return ngModelController.$valid ? "fieldValid" : "fieldInvalid";
+                };
+                
+                $scope.wfsForm.options = [
+                    { id : "1", name : "Never Married" },
+                    { id : "2", name : "Married" },
+                    { id : "3", name : "Separated" },
+                    { id : "4", name : "Divorced" },
+                    { id : "5", name : "Widowed" }
+                ];
+                
+            } );
+</script>
+
+</body>
+</html>
