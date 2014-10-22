@@ -15,7 +15,7 @@ input[type="radio"] {
     float: left;
     clear: none;
     padding: 5px;
-    margin: 8px 5px 10px 10px;
+    margin: 4px 5px 10px 10px;
 
 }
 
@@ -60,11 +60,13 @@ label {
     float: left;
     clear: none;
     padding: 5px;
-    margin: 0px 5px 5px 5px; 
+    margin: 0px 10px 5px 10px; 
+    width: 10%;
+    text-align: left;
 }
 
 .new {
-    width: 5%;
+    width: 15%;
 }
 
 

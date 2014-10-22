@@ -78,11 +78,12 @@
 </nav>	
 </header>
 
+
 <div id="page_content" class="editable">
 <div ng-controller="wfsController">
     <form>
-        <label>First Name</label><input type="text" name="firstName" ng-model="wfsForm.firstName" required>
-        <label>Last Name</label><input type="text" name="lastName" ng-model="wfsForm.lastName" required>
+        <label>First Name</label><input type="text" name="firstName" ng-class="wfsForm.getFormFieldCssClass(wfsFormNg.name)" ng-model="wfsForm.firstName" required>
+        <label>Last Name</label><input type="text" name="lastName"  ng-model="wfsForm.lastName" required>
         <div id="locationField">
 		    <label>Address</label>
 		    <input id="autocomplete" onFocus="geolocate()" type="text" />
