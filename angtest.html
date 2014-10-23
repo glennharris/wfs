@@ -138,16 +138,19 @@
 	    <input type="text" id="hiv0" name="hiv0" />
 	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new"></div>
 	<div class="mainsec">Assets</div>
-	<div id="assets">
-	    <label class="aslabel">Asset type</label><label class="aslabel">Value</label>
-	  <select id="ass" name="ass" ng-model="wfsForm.assets" ng-options="obj.id as obj.name for obj in wfsForm.as_options"  required>
-	        <option value="" selected disabled style="display:none">Select from the list</option>	            
+	    <label class="thead">Asset type</label><label class="thead">Value</label>
+	    <div ng-repeat="asset in assets" ng-class-odd="tbodyo" ng-class-even="tbodye">
+	           <div  class="table">{{asset.type}}</div><div class="table">{{asset.value}}</div>
+	    </div>
+	    <select ng-model="wfsForm.addAssetType" ng-options="obj.name as obj.name for obj in wfsForm.as_options" required>
+	            <option value="" selected disabled style="display:none">Select from the list</option>	            
 	    </select>
-	    <input type="text" id="asv0" name="asv0" />
-	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new" onClick="addField('assets');"></div>
+	    <input type="text" ng-model="wfsForm.addAssetValue" />
+	    <button ng-click="addAsset()">Add</button>
+	</div>
 	<div class="mainsec">Liabilities</div>
 	    <label>Liability type</label><label class="aslabel">Value</label>
-	    <select id="lit" name="lit" ng-model="wfsForm.liability" ng-options="obj.id as obj.name for obj in wfsForm.li_options"  required>
+	    <select id="lit" name="lit" ng-model="wfsForm.liability" ng-options="obj.id as obj.name for obj in wfsForm.li_options" >
 	        <option value="" selected disabled style="display:none">Select from the list</option>	            
 	    </select>
 	    <input type="text" id="liv0" name="liv0" />
@@ -193,9 +196,19 @@
                 ];
                 
                 $scope.wfsForm.yesno = [
-                    { id : "0", name : "No" },
-                    { id : "1", name : "Yes" }
+                    { id: "0", name : "No" },
+                    { id: "1", name : "Yes" }
                 ];
+                
+                $scope.assets = [
+                    {type : "Cash", value : "100" }
+                ];
+                
+                $scope.addAsset = function() {
+                    $scope.assets.push(
+                        {type : $scope.wfsForm.addAssetType, value: $scope.wfsForm.addAssetValue}
+                    );
+                };
                 
             } );
 </script>

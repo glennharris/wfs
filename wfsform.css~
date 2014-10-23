@@ -2,13 +2,14 @@ input {
     border: 1px solid #000;
     padding: 5px;
     margin: 0px 5px 5px 10px;
-    width: 45%;
+    width: 35%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
     border-radius: 5px;
     display: inline-block;
     font-family: Georgia, serif;
+    height: 18px;
 }
 
 input[type="radio"] {
@@ -19,11 +20,26 @@ input[type="radio"] {
 
 }
 
+button {
+    border: 1px solid #000;
+    padding: 5px;
+    margin: 0px 5px 5px 10px;
+    width: 15%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right;
+    border-radius: 5px;
+    display: inline-block;
+    font-family: Georgia, serif;
+    height: 30px;
+ 
+}
+
 select {
     border: 1px solid #000;
     padding: 5px;
     margin: 0px 5px 5px 10px;
-    width: 45%;
+    width: 35%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
@@ -60,7 +76,7 @@ label {
     float: left;
     clear: none;
     padding: 5px;
-    margin: 0px 10px 5px 10px; 
+    margin: 0px 10px 5px 5px; 
     width: 10%;
     text-align: left;
 }
@@ -70,32 +86,43 @@ label {
 }
 
 
-div {
-    clear: both;
-}
+
 
 .mainsec {
     border-bottom: 1px solid black;
-    padding: 3px;
-}
-
-#cdetails {
-    padding: 8px;
-}
-
-#assets {
-    padding: 8px;
-}
-
-.aslabel {
-    width: 45%;
-    text-align: left;
     padding: 5px;
-    margin-left: 5px;
+    clear: both;
+    margin: 0px 5px 5px 5px;
+}
+
+
+
+
+.table {
+    width: 35%;
+    padding: 5px;
+    margin: 0px 5px 5px 5px;
     display: inline-block;
     float: left;
-    /*clear: both;*/
     text-align: left;
-    height: 18px;
+    position: relative;
+
+}
+
+.thead {
+    width: 35%;
+    padding: 5px;
+    margin: 0px 5px 5px 5px;
+    display: inline-block;
+    float: left;
+    text-align: left;
+    position: relative;
+    font-style: italic;
+}
+ 
+.tbodyo {
+    background: #fff;
+}
+    
 
 }
