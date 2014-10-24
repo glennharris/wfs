@@ -1,6 +1,6 @@
 <?php
-include ("db.php"); 
-include ("wfsfunc.php");
+    include ("db.php"); 
+    include ("wfsfunc.php");
     // Build query for contacts
     $unum = $mysqli->real_escape_string($_POST["subpremise"]);
     $snum = $mysqli->real_escape_string($_POST["street_number"]);

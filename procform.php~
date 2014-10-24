@@ -50,7 +50,10 @@ include ("wfsfunc.php");
     
     $i = 0;
     while ($i < 6) {      
+       $asset_type = $mysqli->real_escape_string($_POST["ast" . $i]);
        $asset_value = $mysqli->real_escape_string($_POST["asv" . $i]);
+       
+       echo $asset_type;
        echo $asset_value;
        $i++;
     }

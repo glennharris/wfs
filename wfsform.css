@@ -1,8 +1,8 @@
 input {
     border: 1px solid #000;
     padding: 5px;
-    margin: 0px 5px 5px 10px;
-    width: 35%;
+    margin: 0px 10px 5px 5px;
+    width: 33%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
@@ -23,7 +23,7 @@ input[type="radio"] {
 button {
     border: 1px solid #000;
     padding: 5px;
-    margin: 0px 5px 5px 10px;
+    margin: 0px 10px 0px 5px;
     width: 15%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -38,7 +38,7 @@ button {
 select {
     border: 1px solid #000;
     padding: 5px;
-    margin: 0px 5px 5px 10px;
+    margin: 0px 10px 5px 5px;
     width: 35%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -50,13 +50,14 @@ select {
 }
 
 label {
-    width: 45%;
+    width: 35%;
     padding: 5px;
     display: inline-block;
     float: left;
     /*clear: left;*/
     text-align: right;
     height: 18px;
+    margin: 0px 10px 0px 5px;
 }
 
 .error {
@@ -100,8 +101,8 @@ label {
 
 .table {
     width: 35%;
-    padding: 5px;
-    margin: 0px 5px 5px 5px;
+    padding: 0px;
+    margin: 5px 10px 5px 5px;
     display: inline-block;
     float: left;
     text-align: left;
@@ -111,8 +112,8 @@ label {
 
 .thead {
     width: 35%;
-    padding: 5px;
-    margin: 0px 5px 5px 5px;
+    padding: 0px;
+    margin: 0px 10px 0px 5px;
     display: inline-block;
     float: left;
     text-align: left;

@@ -16,9 +16,12 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
 <link rel="canonical" href="http://www.wisemanfs.com.au/" />
 <link rel="shortcut icon" href="http://www.wisemanfs.com.au/favicon.ico" />
+
 <link rel="stylesheet" media="screen,print" href="http://www.wisemanfs.com.au/includes/template/css/style.css?v=1" />
 <link rel="stylesheet" media="screen,print" href="wfsform.css" />
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
 <script type="text/javascript" src="address.js"></script>
 
@@ -80,7 +83,8 @@
 
 <div id="page_content" class="editable">
 <div ng-controller="wfsController">
-    <form>
+<div id="messages" ng-show="message">{{ message }}</div>
+    <form ng-submit="processForm()">
         <label>First Name</label><input type="text" name="firstName" ng-model="wfsForm.firstName" required>
         <label>Last Name</label><input type="text" name="lastName" ng-model="wfsForm.lastName" required>
         <div id="locationField">
@@ -129,33 +133,43 @@
         <label class="rlabel" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
 	        <input type="radio" id="smoker" name="smoker" ng-model="wfsForm.smokerl" ng-value="n.id" required />{{n.name}}
 	    </label>
-	<div class="mainsec">Health Issues</div>
-	<div id="health">
-	    <label class="aslabel">Health Issue type</label><label class="aslabel">Value</label>
-	    <select id="hit0" name="hit0">      
-	        <option value="" selected disabled style="display:none">Select from the list</option>
-	    </select>
-	    <input type="text" id="hiv0" name="hiv0" />
-	</div><div style="width: 100%; text-align: right;"><input class="new" type="button" value="Add new"></div>
-	<div class="mainsec">Assets</div>
-	    <label class="thead">Asset type</label><label class="thead">Value</label>
-	    <div ng-repeat="asset in assets" ng-class-odd="tbodyo" ng-class-even="tbodye">
-	           <div  class="table">{{asset.type}}</div><div class="table">{{asset.value}}</div>
-	    </div>
-	    <select ng-model="wfsForm.addAssetType" ng-options="obj.name for obj in wfsForm.as_options" required>
+	    <div class="mainsec">Health Issues</div>
+	        <label class="thead">Health Issue type</label><label class="thead">Value</label>
+	        <div ng-repeat="healthissue in healthissues" ng-class-odd="tbodyo" ng-class-even="tbodye">
+	               <div  class="table">{{healthissue.type}}</div><div class="table">{{healthissue.value}}</div>
+	        </div>
+	        <div class="mainsec"></div>
+	        <input type="text" ng-model="wfsForm.addHealthIssueType" /><input type="text" ng-model="wfsForm.addHealthIssueValue" />
+	         <button ng-click="addHealthIssue()">Add</button>
+	    
+	    <div class="mainsec">Assets</div>
+	        <label class="thead">Asset type</label><label class="thead">Value</label>
+	        <div ng-repeat="asset in assets" ng-class-odd="tbodyo" ng-class-even="tbodye">
+	               <div  class="table">{{asset.type}}</div><div class="table">{{asset.value}}</div>
+	        </div>
+	        <div class="mainsec"></div>
+	        <select ng-model="wfsForm.addAssetType" ng-options="obj.name as obj.name for obj in wfsForm.as_options" required>
+	                <option value="" selected disabled style="display:none">Select from the list</option>	            
+	        </select>
+	        <input type="text" ng-model="wfsForm.addAssetValue" />
+	        <button ng-click="addAsset()">Add</button>
+	    
+	    <div class="mainsec">Liabilities</div>
+	        <label class="thead">Liability type</label><label class="thead">Value</label>
+	        <div ng-repeat="liability in liabilities" ng-class-odd="tbodyo" ng-class-even="tbodye">
+	               <div  class="table">{{liability.type}}</div><div class="table">{{liability.value}}</div>
+	        </div>
+	        <div class="mainsec"></div>
+	        <select ng-model="wfsForm.addLiabilityType" ng-options="li.name as li.name for li in wfsForm.li_options" >
 	            <option value="" selected disabled style="display:none">Select from the list</option>	            
-	    </select>
-	    <input type="text" ng-model="wfsForm.addAssetValue" />
-	    <button ng-click="addAsset()">Add</button>
-	</div>
-	<div class="mainsec">Liabilities</div>
-	    <label>Liability type</label><label class="aslabel">Value</label>
-	    <select id="lit" name="lit" ng-model="wfsForm.liability" ng-options="obj.id as obj.name for obj in wfsForm.li_options" >
-	        <option value="" selected disabled style="display:none">Select from the list</option>	            
-	    </select>
-	    <input type="text" id="liv0" name="liv0" />
-
-	</div>
+	        </select>
+	        <input type="text" ng-model="wfsForm.addLiabilityValue" />
+	        <button ng-click="addLiability()">Add</button>
+        <div class="mainsec"></div>
+        <button type="submit">
+			Submit!
+		</button>
+	</form>
     </form>
 </div>
 </div>
@@ -201,8 +215,17 @@
                 ];
                 
                 $scope.assets = [
-                    {type : "Cash", value : "100" }
+                    {type : "", value : "" }
                 ];
+
+                $scope.healthissues = [
+                    {type : "", value : "" }
+                ];
+                
+                $scope.liabilities = [
+                    {type : "", value : "" }
+                ];
+                
                 
                 $scope.addAsset = function() {
                     $scope.assets.push(
@@ -210,6 +233,36 @@
                     );
                 };
                 
+                $scope.addLiability = function() {
+                    $scope.liabilities.push(
+                        {type : $scope.wfsForm.addLiabilityType, value: $scope.wfsForm.addLiabilityValue}
+                    );
+                };
+                
+                $scope.addHealthIssue = function() {
+                    $scope.healthissues.push(
+                        {type : $scope.wfsForm.addHealthIssueType, value: $scope.wfsForm.addHealthIssueValue}
+                    );
+                };
+                
+                $scope.processForm = function() {
+                    $http({
+                        method: 'POST',
+                        url: 'form.php',
+                        data: $.param($scope.wfsForm),
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    })
+                        .success(function(data) {
+                            console.log(data);
+                            
+                            if (!data.success) {
+                                $scope.errorfirstName = data.errors.firstName;
+                                $scope.errorlastName = data.errors.lastName;
+                            } else {
+                                $scope.message = data.message;
+                            }
+                        });
+                };
             } );
 </script>
 <footer>		
