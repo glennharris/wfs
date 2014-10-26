@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+include('wfshead.php');	
+
+?>
+<!---<!doctype html>
 <html lang="en" class="no-js">
 <head>		
     <link rel="stylesheet" media="screen,print" href="wfsform.css" />
@@ -11,17 +15,17 @@
 
 
 <body onload="initialize()" ng-app="wfsApp">
-
-<div ng-controller="wfsController">
-<div id="messages" ng-show="message">{{ wfsForm.message }}</div>
+-->
+<div id="contact_content" ng-controller="wfsController">
+<h1>Personal Details</h1>
     <form role="form" ng-submit="processForm()">
         <div class="form-group">
             <label>First Name</label>
-            <input class="form-control" type="text" name="firstName" ng-model="wfsForm.firstName" required>
+            <input class="form-control" type="text" name="firstName" ng-model="wfsForm.firstName" >
         </div>
         <div class="form-group">
             <label>Last Name</label>
-            <input class="form-control" type="text" name="lastName" ng-model="wfsForm.lastName" required>
+            <input class="form-control" type="text" name="lastName" ng-model="wfsForm.lastName" >
         </div>
         <div class="form-group">
             <div id="locationField">
@@ -40,27 +44,27 @@
 	    </div>
         <div class="form-group">
 	    <label>Email</label>
-            <input class="form-control" id="email" name="email" type="email" ng-model="wfsForm.email" required>
+            <input class="form-control" id="email" name="email" type="email" ng-model="wfsForm.email" >
         </div>
         <div class="form-group">
 	    <label>Phone</label>
-            <input class="form-control" id="phone" name="phone" type="tel" ng-model="wfsForm.phone" required />
+            <input class="form-control" id="phone" name="phone" type="tel" ng-model="wfsForm.phone"  />
         </div>
         <div class="form-group">
 	    <label>Date of Birth</label>
-            <input class="form-control" type="date" id="dob" name="dob" ng-model="wfsForm.dob" required />
+            <input class="form-control" type="date" id="dob" name="dob" ng-model="wfsForm.dob"  />
         </div>
         <div class="form-group">
             <label>Gender</label>
             <div class="radio" ng-repeat="n in wfsForm.g_options">
                 <label>
-                    <input type="radio" ng-model="wfsForm.gender" ng-value="n.id" required />{{n.name}}
+                    <input type="radio" ng-model="wfsForm.gender" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>Marital Status</label>
-	    <select class="form-control" id="mstatus" name="mstatus" ng-model="wfsForm.mstatus" ng-options="obj.id as obj.name for obj in wfsForm.ms_options"  required>
+	    <select class="form-control" id="mstatus" name="mstatus" ng-model="wfsForm.mstatus" ng-options="obj.id as obj.name for obj in wfsForm.ms_options"  >
 	        <option value="" selected disabled style="display:none">Select from the list</option>	            
 	    </select>
         </div>
@@ -68,19 +72,19 @@
 	    <label>Are you employed?</label>
             <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" ng-model="wfsForm.employed" ng-value="n.id" required />{{n.name}}
+                    <input type="radio" ng-model="wfsForm.employed" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>Job Title</label>
-            <input class="form-control" type="text" ng-model="wfsForm.jobtitle" ng-disabled="wfsForm.employed == '0'" ng-required="wfsForm.employed == '1'" id="jobtitle" name="jobtitle" />
+            <input class="form-control" type="text" ng-model="wfsForm.jobtitle" ng-disabled="wfsForm.employed == '0'" ng-="wfsForm.employed == '1'" id="jobtitle" name="jobtitle" />
         </div>
         <div class="form-group">
 	    <label>Do you have a will?</label>
             <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label> 
-                    <input type="radio" id="will" name="will" ng-model="wfsForm.will" ng-value="n.id" required />{{n.name}}
+                    <input type="radio" id="will" name="will" ng-model="wfsForm.will" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
@@ -88,7 +92,7 @@
 	    <label>Do you have a power of attorney?</label>
             <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" id="poa" name="poa" ng-model="wfsForm.poa" ng-value="n.id" required />{{n.name}}
+                    <input type="radio" id="poa" name="poa" ng-model="wfsForm.poa" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
@@ -96,28 +100,29 @@
 	    <label>Do you have any dependants?</label>
             <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" id="dependant" name="dependant" ng-model="wfsForm.dependant" ng-value="n.id" required />{{n.name}}
+                    <input type="radio" id="dependant" name="dependant" ng-model="wfsForm.dependant" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>How many?</label>
-            <input class="form-control" type="text" ng-model="wfsForm.depnum" ng-disabled="wfsForm.dependant === '0'" ng-required="wfsForm.dependant == '1'" id="depnum" name="depnum" />
+            <input class="form-control" type="text" ng-model="wfsForm.depnum" ng-disabled="wfsForm.dependant === '0'" ng-="wfsForm.dependant == '1'" id="depnum" name="depnum" />
         </div>
         <div class="form-group">
             <label>Are you a smoker?</label>
             <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" id="smoker" name="smoker" ng-model="wfsForm.smokerl" ng-value="n.id" required />{{n.name}}
+                    <input type="radio" id="smoker" name="smoker" ng-model="wfsForm.smokerl" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
 	<div class="form-group">
            <label>Do you have any health issues?</label>
-           <textarea class="form-control" ng-model="wfsForm.health" required rows="3"></textarea>
-        </div>         
+           <textarea class="form-control" ng-model="wfsForm.health"  rows="3"></textarea>
+        </div>  
+        <h1>Assets</h1>
 	<div class="form-group"> 
-	    <select class="form-control" ng-model="wfsForm.addAssetType" ng-options="obj.name as obj.name for obj in wfsForm.as_options" required>
+	    <select class="form-control" ng-model="wfsForm.addAssetType" ng-options="obj.name as obj.name for obj in wfsForm.as_options" >
 	        <option value="" selected disabled style="display:none">Select from the list</option>	            
 	    </select>
             <div class="input-group">
@@ -130,7 +135,7 @@
         </div>
             
         <table class="table table-striped">
-            <thead><tr><th>Asset type</th><th>Value</th></tr></thead>
+            <thead><tr><th>Asset Type</th><th>Value</th></tr></thead>
             <tbody>
                 <tr ng-repeat="asset in assets">
                     <td>{{asset.type}}</td>
@@ -138,17 +143,8 @@
                 </tr>
             </tbody>
         </table>
-
-	<table class="table table-striped">
-            <thead><tr><th>Liability type</th><th>Value</th></tr></thead>
-            <tbody>
-                <tr ng-repeat="liability in liabilities">   
-                    <td>{{liability.type}}</td>
-                    <td>{{liability.value}}</td>
-                </tr>
-            </tbody>
-        </table>
-                 
+        
+        <h1>Liabilities</h1>
         <div class="form-group">
             <select class="form-control" ng-model="wfsForm.addLiabilityType" ng-options="li.name as li.name for li in wfsForm.li_options" >
             <option value="" selected disabled style="display:none">Select from the list</option>	            
@@ -160,14 +156,23 @@
                     <button class="btn btn-default" ng-click="addLiability()">Add a Liability</button>
                 </span>
             </div>
-	
-                 
-	        
-       <button type="submit" class="btn btn-primary">
-			Submit!
-		</button>
-	</form>
+        </div>
+
+	<table class="table table-striped">
+            <thead><tr><th>Liability Type</th><th>Value</th></tr></thead>
+            <tbody>
+                <tr ng-repeat="liability in liabilities">   
+                    <td>{{liability.type}}</td>
+                    <td>{{liability.value}}</td>
+                </tr>
+            </tbody>
+        </table>
+                      
+       <button type="submit" class="btn btn-primary">Submit!</button>
+    </form>
+<div id="messages" ng-show="message">{{ wfsForm.message }}</div> 
 </div>
+
 
 <script>
     angular.module("wfsApp", [])
@@ -212,7 +217,7 @@
                 $scope.assets = [
                     {type : "Cash", value : "100" },
                     {type : "Shares", value : "500" },
-                    {type : "Managed Fund", value : "1000" },
+                    {type : "Managed Fund", value : "1000" }
                 ];
 
                 $scope.healthissues = [
@@ -262,6 +267,5 @@
                 };
             } );
 </script>
-</body>
-</html>
+<?php include("wfsfoot.php"); ?>
 

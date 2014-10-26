@@ -13,12 +13,17 @@
 <meta name="keywords" content="Financial Planning, Centrelink, Aged Care, Estate Planning, Superannuation, Insurance, Investments, financial advice" />
 <meta name="description" content="Wiseman Financial Services" />
 <meta name="author" content="Wisdom Advertising and Design (www.wisdom.com.au)" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+
 <link rel="canonical" href="http://www.wisemanfs.com.au/" />
 <link rel="shortcut icon" href="http://www.wisemanfs.com.au/favicon.ico" />
+<link rel="stylesheet" media="screen,print" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" media="screen,print" href="http://www.wisemanfs.com.au/includes/template/css/style.css?v=1" />
-<link rel="stylesheet" media="screen,print" href="wfsform.css" />
+
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+
 <script type="text/javascript" src="address.js"></script>
 
 <!--[if lt IE 7]><link rel="stylesheet" media="screen,print" href="http://www.wisemanfs.com.au/includes/template/css/ie7.css?v=1" /><![endif]-->
@@ -29,7 +34,7 @@
 	<!--[if IE 8]><body class="ie8"><![endif]-->
 	<!--[if IE 9]><body class="ie9"><![endif]-->
 	<!--[if gt IE 9]><body><![endif]-->
-	<!--[if !IE]><!--><body onload="initialize()"><!--<![endif]-->
+	<!--[if !IE]><!--><body onload="initialize()" ng-app="wfsApp"><!--<![endif]-->
 <div id="wrapper">
 <header>
 	<div id="page-logos">
