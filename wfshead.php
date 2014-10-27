@@ -17,7 +17,8 @@
 <link rel="canonical" href="http://www.wisemanfs.com.au/" />
 <link rel="shortcut icon" href="http://www.wisemanfs.com.au/favicon.ico" />
 <link rel="stylesheet" media="screen,print" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" media="screen,print" href="http://www.wisemanfs.com.au/includes/template/css/style.css?v=1" />
+<link rel="stylesheet" media="screen,print" href="wfsform.css">
+<!-- <link rel="stylesheet" media="screen,print" href="http://www.wisemanfs.com.au/includes/template/css/style.css?v=1" /> -->
 
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
