@@ -21,11 +21,11 @@ include('wfshead.php');
     <form role="form" ng-submit="processForm()" novalidate>
         <div class="form-group">
             <label>First Name</label>
-            <input class="form-control" type="text" name="firstName" ng-model="firstName" required>
+            <input class="form-control" type="text" name="firstName" ng-model="wfsForm.firstName" required>
         </div>
         <div class="form-group">
             <label>Last Name</label>
-            <input class="form-control" type="text" name="lastName" ng-model="lastName" >
+            <input class="form-control" type="text" name="lastName" ng-model="wfsForm.lastName" required>
         </div>
         <div class="form-group">
             <div id="locationField">
@@ -44,81 +44,81 @@ include('wfshead.php');
 	    </div>
         <div class="form-group">
 	    <label>Email</label>
-            <input class="form-control" id="email" name="email" type="email" ng-model="email" >
+            <input class="form-control" id="email" name="email" type="email" ng-model="wfsForm.email" >
         </div>
         <div class="form-group">
 	    <label>Phone</label>
-            <input class="form-control" id="phone" name="phone" type="tel" ng-model="phone"  />
+            <input class="form-control" id="phone" name="phone" type="tel" ng-model="wfsForm.phone"  />
         </div>
         <div class="form-group">
 	    <label>Date of Birth</label>
-            <input class="form-control" type="date" id="dob" name="dob" ng-model="dob"  />
+            <input class="form-control" type="date" id="dob" name="dob" ng-model="wfsForm.dob"  />
         </div>
         <div class="form-group">
             <label>Gender</label>
-            <div class="radio" ng-repeat="n in g_options">
+            <div class="radio" ng-repeat="n in wfsForm.g_options">
                 <label>
-                    <input type="radio" ng-model="gender" ng-value="n.id"  />{{n.name}}
+                    <input id="gender" type="radio" ng-model="wfsForm.gender" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>Marital Status</label>
-	    <select class="form-control" id="mstatus" name="mstatus" ng-model="mstatus" ng-options="obj.id as obj.name for obj in ms_options"  >
+	    <select class="form-control" id="mstatus" name="mstatus" ng-model="wfsForm.mstatus" ng-options="obj.id as obj.name for obj in wfsForm.ms_options"  >
 	        <option value="" selected disabled style="display:none">Select from the list</option>	            
 	    </select>
         </div>
         <div class="form-group">
 	    <label>Are you employed?</label>
-            <div class="radio" ng-repeat="n in yesno | orderBy : 'id' : reverse=true">
+            <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" ng-model="employed" ng-value="n.id"  />{{n.name}}
+                    <input type="radio" ng-model="wfsForm.employed" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>Job Title</label>
-            <input class="form-control" type="text" ng-model="jobtitle" ng-disabled="employed == '0'" ng-="employed == '1'" id="jobtitle" name="jobtitle" />
+            <input class="form-control" type="text" ng-model="wfsForm.jobtitle" ng-disabled="employed == '0'" ng-="employed == '1'" id="jobtitle" name="jobtitle" />
         </div>
         <div class="form-group">
 	    <label>Do you have a will?</label>
-            <div class="radio" ng-repeat="n in yesno | orderBy : 'id' : reverse=true">
+            <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label> 
-                    <input type="radio" id="will" name="will" ng-model="will" ng-value="n.id"  />{{n.name}}
+                    <input type="radio" id="will" name="will" ng-model="wfsForm.will" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>Do you have a power of attorney?</label>
-            <div class="radio" ng-repeat="n in yesno | orderBy : 'id' : reverse=true">
+            <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" id="poa" name="poa" ng-model="poa" ng-value="n.id"  />{{n.name}}
+                    <input type="radio" id="poa" name="poa" ng-model="wfsForm.poa" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>Do you have any dependants?</label>
-            <div class="radio" ng-repeat="n in yesno | orderBy : 'id' : reverse=true">
+            <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" id="dependant" name="dependant" ng-model="dependant" ng-value="n.id"  />{{n.name}}
+                    <input type="radio" id="dependant" name="dependant" ng-model="wfsForm.dependant" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
         <div class="form-group">
 	    <label>How many?</label>
-            <input class="form-control" type="text" ng-model="depnum" ng-disabled="dependant === '0'" ng-="dependant == '1'" id="depnum" name="depnum" />
+            <input class="form-control" type="text" ng-model="wfsForm.depnum" ng-disabled="dependant === '0'" ng-="dependant == '1'" id="depnum" name="depnum" />
         </div>
         <div class="form-group">
             <label>Are you a smoker?</label>
-            <div class="radio" ng-repeat="n in yesno | orderBy : 'id' : reverse=true">
+            <div class="radio" ng-repeat="n in wfsForm.yesno | orderBy : 'id' : reverse=true">
                 <label>
-                    <input type="radio" id="smoker" name="smoker" ng-model="smoker" ng-value="n.id"  />{{n.name}}
+                    <input type="radio" id="smoker" name="smoker" ng-model="wfsForm.smoker" ng-value="n.id"  />{{n.name}}
                 </label>
             </div>
         </div>
 	<div class="form-group">
            <label>Do you have any health issues?</label>
-           <textarea class="form-control" ng-model="health"  rows="3"></textarea>
+           <textarea class="form-control" ng-model="wfsForm.healthissue" rows="3"></textarea>
         </div>  
         <h1>Assets</h1>
 	<div class="form-group"> 
@@ -127,9 +127,9 @@ include('wfshead.php');
 	    </select>
             <div class="input-group">
                 <span class="input-group-addon">$</span>
-                <input class="form-control" type="text" ng-model="addAssetValue" />
+                <input class="form-control" type="text" ng-model="wfsForm.addAssetValue" />
                 <span class="input-group-btn">
-                    <button class="btn btn-default" ng-click="addAsset()" ng-disabled="addAssetType.$invalid">Add an Asset</button>
+                    <button class="btn btn-default" ng-click="wfsForm.addAsset()" ng-disabled="wfsForm.addAssetType.$invalid">Add an Asset</button>
                 </span>
             </div>
         </div>
@@ -146,14 +146,14 @@ include('wfshead.php');
         </div>
         <h1>Liabilities</h1>
         <div class="form-group">
-            <select class="form-control" ng-model="addLiabilityType" ng-options="li.name as li.name for li in li_options" >
+            <select class="form-control" ng-model="wfsForm.addLiabilityType" ng-options="li.name as li.name for li in li_options" >
             <option value="" selected disabled style="display:none">Select from the list</option>	            
             </select>
             <div class="input-group">
                 <span class="input-group-addon">$</span>
-                <input class="form-control" type="text" ng-model="addLiabilityValue" />
+                <input class="form-control" type="text" ng-model="wfsForm.addLiabilityValue" />
                 <span class="input-group-btn">
-                    <button class="btn btn-default" ng-click="addLiability()">Add a Liability</button>
+                    <button class="btn btn-default" ng-click="wfsForm.addLiability()">Add a Liability</button>
                 </span>
             </div>
         </div>
@@ -179,7 +179,7 @@ include('wfshead.php');
             .controller("wfsController", function($scope, $http) {
                 $scope.wfsForm = {};
                 
-                $scope.ms_options = [
+                $scope.wfsForm.ms_options = [
                     { id : "1", name : "Never Married" },
                     { id : "2", name : "Married" },
                     { id : "3", name : "Separated" },
@@ -187,7 +187,7 @@ include('wfshead.php');
                     { id : "5", name : "Widowed" }
                 ];
                 
-                $scope.as_options = [
+                $scope.wfsForm.as_options = [
                     { id : "1", name : "Cash" },
                     { id : "2", name : "Home" },
                     { id : "3", name : "Shares" },
@@ -197,52 +197,79 @@ include('wfshead.php');
                     { id : "7", name : "Pension / Annuity" }
                 ];
                 
-                $scope.li_options = [
+                $scope.wfsForm.li_options = [
                     { id : "1", name : "Mortgage" },
                     { id : "2", name : "Car Loan" },
                     { id : "3", name : "Personal Loan" },
                     { id : "4", name : "Credit Card" }
                 ];
                 
-                $scope.g_options = [
+                $scope.wfsForm.g_options = [
                     { id : "1", name : "Male" },
                     { id : "2", name : "Female" }
                 ];
                 
-                $scope.yesno = [
+                $scope.wfsForm.yesno = [
                     { id: "0", name : "No" },
                     { id: "1", name : "Yes" }
                 ];
                 
-                $scope.assets = [
+                $scope.wfsForm.assets = [
                     {type : "Cash", value : "100" },
                     {type : "Shares", value : "500" },
                     {type : "Managed Fund", value : "1000" }
                 ];
 
-                $scope.healthissues = [
+                $scope.wfsForm.healthissues = [
                     {type : "", value : "" }
                 ];
                 
-                $scope.liabilities = [
+                $scope.wfsForm.liabilities = [
                     {type : "", value : "" }
                 ];
                 
                 
-                $scope.addAsset = function() {
+                $scope.wfsForm.addAsset = function() {
                     $scope.assets.push(
-                        {type : $scope.addAssetType, value: $scope.addAssetValue}
+                        {type : $scope.wfsForm.addAssetType, value: $scope.wfsForm.addAssetValue}
                     );
                 };
                 
-                $scope.addLiability = function() {
+                $scope.wfsForm.addLiability = function() {
                     $scope.liabilities.push(
-                        {type : $scope.addLiabilityType, value: $scope.addLiabilityValue}
+                        {type : $scope.wfsForm.addLiabilityType, value: $scope.wfsForm.addLiabilityValue}
                     );
                 };
+                
+                $scope.errors = [];
+                $scope.msgs = [];
                 
                 $scope.processForm = function() {
-                    $http({
+                    $scope.errors.splice(0, $scope.errors.length);
+                    $scope.msgs.splice(0, $scope.msgs.length);
+                    
+                    $http.post('form.php', 
+                    {
+                        'firstName': $scope.wfsForm.firstName, 
+                        'lastName': $scope.wfsForm.lastName,
+                        'email': $scope.wfsForm.email,
+                        'phone': $scope.wfsForm.phone,
+                        'dob': $scope.wfsForm.dob,
+                        'gender': $scope.wfsForm.gender
+                        
+                        
+                        
+                    }
+                    ).success(function(data, status, headers, config){
+                        if(data.msg != '') {
+                            $scope.msgs.push(data.msg);
+                        } else {
+                            $scope.errors.push(data.error);
+                        }
+                     }).error(function(data, status) {
+                        $scope.errors.push(status);
+                     });
+                   /* $http({
                         method: 'POST',
                         url: 'form.php',
                         data: $.param($scope.wfsForm),
@@ -255,11 +282,12 @@ include('wfshead.php');
                                 $scope.errorfirstName = data.errors.firstName;
                                 $scope.errorlastName = data.errors.lastName;
                             } else {
-                                $scope.message = data.message;
+                                $scope.message = data.message;/l
                             }
                         });
-                };
-            } );
+                };*/
+            }
+           });
 </script>
 <?php include("wfsfoot.php"); ?>
 

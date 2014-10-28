@@ -1,5 +1,5 @@
 <?php
-
+/*
 $errors = array();
 $data = array();
 
@@ -17,6 +17,13 @@ if (!empty($errors)) {
     $data['message'] = 'Success!';
 }
 
-echo json_encode($data);
+echo $_POST['firstName'];
+*/
+
+$data = json_decode(file_get_contents("php://input"));
+$firstName = mysql_real_escape_string($data->firstName);
+$lastName = mysql_real_escape_string($data->lastName);
+
+echo $firstName;
 
 ?>
