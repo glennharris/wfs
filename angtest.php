@@ -255,10 +255,16 @@ include('wfshead.php');
                         'email': $scope.wfsForm.email,
                         'phone': $scope.wfsForm.phone,
                         'dob': $scope.wfsForm.dob,
-                        'gender': $scope.wfsForm.gender
-                        
-                        
-                        
+                        'gender': $scope.wfsForm.gender,
+                        'mstatus': $scope.wfsForm.mstatus,
+                        'employed': $scope.wfsForm.employed,
+                        'jobtitle': $scope.wfsForm.jobtitle,
+                        'will': $scope.wfsForm.will,
+                        'poa': $scope.wfsForm.poa,
+                        'dependant': $scope.wfsForm.dependant,
+                        'depnum': $scope.wfsForm.depnum,
+                        'smoker': $scope.wfsForm.smoker,
+                        'healthissue': $scope.wfsForm.healthissue   
                     }
                     ).success(function(data, status, headers, config){
                         if(data.msg != '') {
