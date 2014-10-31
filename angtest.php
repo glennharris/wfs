@@ -1,21 +1,15 @@
 <?php
-include('wfshead.php');	
-
+    // ---------------------------------------------
+    // Wiseman Financial Services
+    // Online Financial Advice Service
+    // User input form
+    // Author: Glenn Harris (glenn.harris@gmail.com)
+    // Repository: http://github.com/glennharris/wfs
+    // ----------------------------------------------
+    
+    include('wfshead.php');	
 ?>
-<!---<!doctype html>
-<html lang="en" class="no-js">
-<head>		
-    <link rel="stylesheet" media="screen,print" href="wfsform.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
-<script type="text/javascript" src="address.js"></script>
-
-
-<body onload="initialize()" ng-app="wfsApp">
--->
 <div id="page_content" class="editable" ng-controller="wfsController" style="max-width: 626px;">
 <h1>Personal Details</h1>
     <form role="form" ng-submit="processForm()" novalidate>
