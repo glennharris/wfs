@@ -28,7 +28,7 @@
             </div>
         </div>
 	    <div class="form-group" style="display:block;">
-	        <input class="form-control" type="text" name="subpremise" id="subpremise" ng-model="wfsForm.unum" ng-model-options="{debounce: 1}"/>
+	        <input class="form-control" type="text" name="subpremise" id="subpremise" ng-model="wfsForm.unum" ng-model-options="{debounce: 0}"/>
 	        <input class="form-control" type="text" name="street_number" id="street_number" ng-model="wfsForm.snum" ng-model-options="{debounce: 0}" />
             <input class="form-control" type="text" name="route" id="route" ng-model="wfsForm.sname" ng-model-options="{debounce: 0}" />
             <input class="form-control" type="text" name="locality" id="locality" ng-model="wfsForm.suburb" ng-model-options="{debounce: 0}"/>
