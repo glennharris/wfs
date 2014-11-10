@@ -46,6 +46,8 @@
     $poa = mysql_real_escape_string($data->poa);
     $dependant = mysql_real_escape_string($data->dependant);
     $depnum = mysql_real_escape_string($data->depnum);
+    $smoker = mysql_real_escape_string($data->smoker);
+    $healthissue = mysql_real_escape_string($data->healthissue);
     
 
     // Testing

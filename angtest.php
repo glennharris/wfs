@@ -28,13 +28,13 @@
             </div>
         </div>
 	    <div class="form-group" style="display:block;">
-	        <input class="form-control" type="text" name="subpremise" id="subpremise" ng-model="wfsForm.unum" ng-model-options="{debounce: 1}"/>
-	        <input class="form-control" type="text" name="street_number" id="street_number" ng-model="wfsForm.snum" ng-model-options="{debounce: 0}" />
-            <input class="form-control" type="text" name="route" id="route" ng-model="wfsForm.sname" ng-model-options="{debounce: 0}" />
-            <input class="form-control" type="text" name="locality" id="locality" ng-model="wfsForm.suburb" ng-model-options="{debounce: 0}"/>
-	        <input class="form-control" type="text" name="administrative_area_level_1" id="administrative_area_level_1" ng-model="wfsForm.state" ng-model-options="{debounce: 0}" />
-            <input class="form-control" type="text" name="postal_code" id="postal_code" ng-model="wfsForm.pcode" ng-model-options="{debounce: 0}" />
-            <input class="form-control" type="text" name="country" id="country" ng-model="wfsForm.country" ng-model-options="{debounce: 0}" />
+	        <input class="form-control" type="text" name="subpremise" id="subpremise" ng-model="wfsForm.unum" />
+	        <input class="form-control" type="text" name="street_number" id="street_number" ng-model="wfsForm.snum" />
+            <input class="form-control" type="text" name="route" id="route" ng-model="wfsForm.sname" />
+            <input class="form-control" type="text" name="locality" id="locality" ng-model="wfsForm.suburb"/>
+	        <input class="form-control" type="text" name="administrative_area_level_1" id="administrative_area_level_1" ng-model="wfsForm.state" />
+            <input class="form-control" type="text" name="postal_code" id="postal_code" ng-model="wfsForm.pcode" />
+            <input class="form-control" type="text" name="country" id="country" ng-model="wfsForm.country" />
 	    </div>
         <div class="form-group">
 	    <label>Email</label>
@@ -155,7 +155,7 @@
 	<table class="table table-striped" >
             <thead><tr><th>Liability Type</th><th>Value</th></tr></thead>
             <tbody>
-                <tr ng-repeat="liability in liabilities">   
+                <tr ng-repeat="liability in wfsForm.liabilities">   
                     <td>{{liability.type}}</td>
                     <td>{{liability.value | currency}}</td>
                 </tr>
@@ -169,8 +169,9 @@
 
 
 <script>
-    angular.module("wfsApp", [])
-            .controller("wfsController", function($scope, $http) {
+    var wfsApp = angular.module("wfsApp", []);
+            
+    wfsApp.controller("wfsController", function($scope, $http) {
                 $scope.wfsForm = {};
                 
                 $scope.wfsForm.ms_options = [
@@ -224,13 +225,13 @@
                 
                 
                 $scope.wfsForm.addAsset = function() {
-                    $scope.assets.push(
+                    $scope.wfsForm.assets.push(
                         {type : $scope.wfsForm.addAssetType, value: $scope.wfsForm.addAssetValue}
                     );
                 };
                 
                 $scope.wfsForm.addLiability = function() {
-                    $scope.liabilities.push(
+                    $scope.wfsForm.liabilities.push(
                         {type : $scope.wfsForm.addLiabilityType, value: $scope.wfsForm.addLiabilityValue}
                     );
                 };
