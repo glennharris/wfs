@@ -34,8 +34,8 @@
     $contact_id = $mysqli->insert_id;
 
     // Split POST data into variables.
-    $fname = $mysqli->real_escape_string($data->fname);
-    $lname = $mysqli->real_escape_string($data->lname);
+    $fname = mysql_real_escape_string($data->fname);
+    $lname = $data->lname;
     
     $dob = mysql_real_escape_string($data->dob); // Probably need a date conversion here.
     $gender = mysql_real_escape_string($data->gender);

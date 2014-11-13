@@ -164,7 +164,7 @@
       </div>                
        <button type="submit" class="btn btn-default btn-block" >Submit!</button>
     </form>
-    <div id="messages" class="form-group" ng-show="message">{{ message }}</div> 
+    <div id="message" name="message" class="form-group" ng-show="message"></div> 
 </div>
 
 
@@ -237,14 +237,15 @@
                 };
                 
                 $scope.errors = [];
-                $scope.msgs = [];
+                $scope.messages = [];
                 
                 $scope.processForm = function() {
-                    $scope.errors.splice(0, $scope.errors.length);
-                    $scope.msgs.splice(0, $scope.msgs.length);
                     
-                    $http.post('form.php', 
-                    {
+                var request = $http({
+                    method: "post",
+                    
+                    url: "form.php", 
+                    data: {
                         'fname': $scope.wfsForm.fname, 
                         'lname': $scope.wfsForm.lname,
                         'unum': $scope.wfsForm.unum,
@@ -267,15 +268,22 @@
                         'depnum': $scope.wfsForm.depnum,
                         'smoker': $scope.wfsForm.smoker,
                         'healthissue': $scope.wfsForm.healthissue   
+                    },
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                 });
+                   request.success(function(data){
+                    document.getElementById("message").textContent = "Success";
+                    console.log(data);
+
+                    if (!data.success) {
+                    	// if not successful, bind errors to error variables
+                        //$scope.errorName = data.errors.name;
+                    
+                    } else {
+                    	// if successful, bind success message to message
+                        $scope.message = data.message;
                     }
-                    ).success(function(data, status, headers, config){
-                        if(data.msg != '') {
-                            $scope.msgs.push(data.msg);
-                        } else {
-                            $scope.errors.push(data.error);
-                        }
-                     }).error(function(data, status) {
-                        $scope.errors.push(status);
+
                      });
             }
            });
