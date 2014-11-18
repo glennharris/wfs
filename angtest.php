@@ -12,7 +12,7 @@
 
 <div id="page_content" class="editable" ng-controller="wfsController" style="max-width: 626px;">
 <h1>Personal Details</h1>
-    <form role="form" ng-submit="processForm()" novalidate>
+    <form role="form" ng-submit="wfsForm.processForm()" novalidate>
         <div class="form-group">
             <label>First Name</label>
             <input class="form-control" type="text" name="fname" ng-model="wfsForm.fname" required>
@@ -164,7 +164,9 @@
       </div>                
        <button type="submit" class="btn btn-default btn-block" >Submit!</button>
     </form>
-    <div id="message" name="message" class="form-group" ng-show="message"></div> 
+    <pre ng-model="result">
+{{result}}
+</pre>
 </div>
 
 
@@ -236,16 +238,8 @@
                     );
                 };
                 
-                $scope.errors = [];
-                $scope.messages = [];
-                
-                $scope.processForm = function() {
-                    
-                var request = $http({
-                    method: "post",
-                    
-                    url: "form.php", 
-                    data: {
+                $scope.wfsForm.processForm = function() {
+                    var data = {
                         'fname': $scope.wfsForm.fname, 
                         'lname': $scope.wfsForm.lname,
                         'unum': $scope.wfsForm.unum,
@@ -268,24 +262,18 @@
                         'depnum': $scope.wfsForm.depnum,
                         'smoker': $scope.wfsForm.smoker,
                         'healthissue': $scope.wfsForm.healthissue   
-                    },
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                 });
-                   request.success(function(data){
-                    document.getElementById("message").textContent = "Success";
-                    console.log(data);
-
-                    if (!data.success) {
-                    	// if not successful, bind errors to error variables
-                        //$scope.errorName = data.errors.name;
-                    
-                    } else {
-                    	// if successful, bind success message to message
-                        $scope.message = data.message;
-                    }
-
-                     });
-            }
+                    };
+                
+                    var request = $http.post("form.php", data, {});
+                
+                    request.success(function(data, status, headers, config) {
+                        $scope.result = data;
+                    });
+                   
+                    request.error(function(data, status, headers, config) {
+                        alert("Submitting form failed!");
+                    });
+                }
            });
 </script>
 <?php include("wfsfoot.php"); ?>
