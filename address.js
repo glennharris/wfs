@@ -2,7 +2,7 @@ var placeSearch, autocomplete;
 var componentForm = {
   subpremise: 'short_name',  
   street_number: 'short_name',
-  street_address: 'long_name',
+  route: 'long_name',
   locality: 'long_name',
   administrative_area_level_1: 'long_name',
   country: 'long_name',
@@ -39,8 +39,7 @@ function geolocate() {
     navigator.geolocation.getCurrentPosition(function(position) {
       var geolocation = new google.maps.LatLng(
           position.coords.latitude, position.coords.longitude);
-      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
-          geolocation));
+      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation, geolocation));
     });
   }
 }

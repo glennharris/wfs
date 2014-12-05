@@ -27,7 +27,7 @@
                 <input class="form-control" id="autocomplete" onFocus="geolocate()" type="text" />
             </div>
         </div>
-	    <div class="form-group" style="display:block;">
+	    <div class="form-group" style="display:none;">
 	        <input class="form-control" type="text" name="subpremise" id="subpremise" ng-model="wfsForm.unum" />
 	        <input class="form-control" type="text" name="street_number" id="street_number" ng-model="wfsForm.snum" />
             <input class="form-control" type="text" name="route" id="route" ng-model="wfsForm.sname" />
@@ -267,7 +267,7 @@
                     var request = $http.post("form.php", data, {});
                 
                     request.success(function(data, status, headers, config) {
-                        $scope.result = data;
+                        $scope.message = data;
                     });
                    
                     request.error(function(data, status, headers, config) {
